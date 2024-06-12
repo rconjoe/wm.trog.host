@@ -1,11 +1,7 @@
 FROM ghcr.io/windmill-labs/windmill:main
 
-
-RUN curl https://mise.run -o ./miseinstall
-RUN chmod +x ./miseinstall && ./miseinstall 
-RUN echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
-RUN source ~/.bashrc
-RUN mise use rust
+RUN curl -o ./rustinstall https://sh.rustup.rs
+RUN chmod +x ./rustinstall && ./rustinstall -y
 
 RUN apt-get update -y
 RUN apt install libasound2-dev libssl-dev pkg-config
