@@ -6,7 +6,8 @@ apt install -y libasound2-dev libssl-dev pkg-config
 curl https://sh.rustup.rs -sSf | bash -s -- -y
 . $HOME/.cargo/env
 git clone https://github.com/Spotifyd/spotifyd.git
-cd spotifyd && cargo build --release              
+cd spotifyd && cargo build --release 
+ln -s ./target/release/spotifyd /usr/bin/spotifyd
 EOF
 
 CMD ["windmill"]
