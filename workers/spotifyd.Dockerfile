@@ -12,9 +12,8 @@ FROM ghcr.io/windmill-labs/windmill:main
 
 RUN apt update -y
 RUN apt install -y libasound2-dev libssl-dev pkg-config
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-RUN . "$HOME/.cargo/env" 
 RUN git clone https://github.com/Spotifyd/spotifyd.git
-RUN cd spotifyd && cargo build --release
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN . "$HOME/.cargo/env" && cd spotifyd && cargo build --release
 
 CMD ["windmill"]
