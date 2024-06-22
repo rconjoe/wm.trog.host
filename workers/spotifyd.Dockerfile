@@ -14,8 +14,10 @@ ARG SPOT_USER
 ARG SPOT_PASS
 
 RUN apt update -y
-RUN apt install -y libasound2-dev libssl-dev pkg-config
+RUN apt install -y libasound2-dev libssl-dev pkg-config sox
 RUN git clone https://github.com/Spotifyd/spotifyd.git
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-RUN . "$HOME/.cargo/env" && cd spotifyd && cargo build --release && ./target/release/spotifyd -u $SPOT_USER -p $SPOT_PASS
+RUN . "$HOME/.cargo/env" && cd spotifyd && cargo build --release && cp ./target/release/spotifyd /root/spotifyd 
+RUN /root/spotifyd -u $SPOT_USER -p $SPOT_PASS
+
 CMD ["windmill"]
