@@ -11,7 +11,7 @@ FROM ghcr.io/windmill-labs/windmill:main
 # EOF
 
 RUN apt update -y
-RUN apt install -y libasound2-dev libssl-dev pkg-config rustup
+RUN apt install -y libasound2-dev libssl-dev pkg-config rustc
 RUN git clone https://github.com/Spotifyd/spotifyd.git
 RUN cd spotifyd && cargo build --release
 
