@@ -10,8 +10,8 @@ FROM ghcr.io/windmill-labs/windmill:main
 # ln -s ./target/release/spotifyd /usr/bin/spotifyd
 # EOF
 
-ENV SPOT_USER
-ENV SPOT_PASS
+ARG SPOT_USER
+ARG SPOT_PASS
 
 RUN apt update -y
 RUN apt install -y libasound2-dev libssl-dev pkg-config
