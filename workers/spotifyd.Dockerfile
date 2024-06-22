@@ -18,6 +18,5 @@ RUN apt install -y libasound2-dev libssl-dev pkg-config sox syslog-ng -y
 RUN git clone https://github.com/Spotifyd/spotifyd.git
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN . "$HOME/.cargo/env" && cd spotifyd && cargo build --release && cp ./target/release/spotifyd /usr/bin/spotifyd
-RUN spotifyd --no-daemon -u $SPOT_USER -p $SPOT_PASS 
 
-CMD ["windmill"]
+CMD nohup spotifyd --no-daemon -u $SPOT_USER -p $SPOT_PASS & windmill
